@@ -1,0 +1,33 @@
+logging:
+  level:
+    logging.level.web: debug
+    reactor.netty.http.client: debug
+    org.springframework.security: debug
+    #org.springframework.security.oauth2: debug
+
+spring:
+  main:
+    web-application-type: none
+    
+  security:
+    oauth2:
+      client:
+        registration:
+          racing-touch:
+            provider: ciam
+            authorization-grant-type: client_credentials
+            client-id: <<TBP>>
+            client-secret: <<TBP>> 
+            client-authentication-method: client_secret_basic
+        provider:
+          ciam:
+            token-uri: <<TBP>>
+
+mqtt:
+  client-id: springboot_paho_${random.value}
+  #broker-url: tcp://192.168.142.71:1883
+  #username: user1
+  #password: hm93bqCj6xR562U
+  broker-url: ssl://mrnzmkh0ufgnb.messaging.solace.cloud:8883
+  username: solace-cloud-client
+  password: <<TBP>>

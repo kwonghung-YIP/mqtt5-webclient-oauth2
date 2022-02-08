@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -53,6 +54,9 @@ public class InfoApiWrapper {
 				.header(HttpHeaders.ACCEPT_ENCODING,"gzip")
 				.header("X-Request-Id", UUID.randomUUID().toString())
 				.retrieve()
+				//.onStatus(HttpStatus::isError, response -> {
+				//	return response.bodyToMono(JsonNode.class);
+				//})
 				.bodyToMono(JsonNode.class);	
 	}
 }
